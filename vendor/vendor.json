@@ -38,6 +38,12 @@
 			"revisionTime": "2016-06-29T16:19:23Z"
 		},
 		{
+			"checksumSHA1": "R2C3HnctXd1hf/eEW3bR5Ez/39w=",
+			"path": "github.com/Azure/azure-sdk-for-go/arm/servicebus",
+			"revision": "2cdbb8553a20830507e4178b4d0803794136dde7",
+			"revisionTime": "2016-06-29T16:19:23Z"
+		},
+		{
 			"checksumSHA1": "XtI6atfC23rgxiObn0Da6fvXL94=",
 			"comment": "v2.1.1-beta-8-gca4d906",
 			"path": "github.com/Azure/azure-sdk-for-go/arm/storage",
