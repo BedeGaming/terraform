@@ -10,6 +10,7 @@ import (
 	"github.com/Azure/azure-sdk-for-go/arm/network"
 	"github.com/Azure/azure-sdk-for-go/arm/resources/resources"
 	"github.com/Azure/azure-sdk-for-go/arm/scheduler"
+	"github.com/Azure/azure-sdk-for-go/arm/servicebus"
 	"github.com/Azure/azure-sdk-for-go/arm/storage"
 	mainStorage "github.com/Azure/azure-sdk-for-go/storage"
 	"github.com/Azure/go-autorest/autorest"
@@ -60,6 +61,8 @@ type ArmClient struct {
 	storageUsageClient   storage.UsageOperationsClient
 
 	deploymentsClient resources.DeploymentsClient
+
+	serviceBusNamespaceClient servicebus.NamespacesClient
 }
 
 func withRequestLogging() autorest.SendDecorator {
@@ -316,6 +319,12 @@ func (c *Config) getArmClient() (*ArmClient, error) {
 	dc.Authorizer = spt
 	dc.Sender = autorest.CreateSender(withRequestLogging())
 	client.deploymentsClient = dc
+
+	sbnsc := servicebus.NewNamespacesClient(c.SubscriptionID)
+	setUserAgent(&sbnsc.Client)
+	sbnsc.Authorizer = spt
+	sbnsc.Sender = autorest.CreateSender(withRequestLogging())
+	client.serviceBusNamespaceClient = sbnsc
 
 	return &client, nil
 }
