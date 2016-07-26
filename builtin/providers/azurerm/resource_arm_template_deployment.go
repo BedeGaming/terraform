@@ -185,7 +185,7 @@ func resourceArmTemplateDeploymentDelete(d *schema.ResourceData, meta interface{
 	}
 
 	_, err = deployClient.Delete(resGroup, name, make(chan struct{}))
-	return nil
+	return err
 }
 
 func expandTemplateBody(template string) (map[string]interface{}, error) {
